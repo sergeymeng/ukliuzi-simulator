@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import "./App.css";
 
 const clamp = (value, min = 0, max = 100) => Math.max(min, Math.min(max, value));
@@ -142,7 +143,7 @@ const shopItems = [
   { id: "dumpling", name: "速冻饺子", place: ["中超"], price: 7, effect: { sanity: 10, action: 3 }, tag: "冰箱里有饺子，人生就还有希望" },
   { id: "hotpot", name: "火锅底料", place: ["中超"], price: 4, effect: { sanity: 10, social: 8, kitchen: 2 }, tag: "一包底料召唤半个朋友圈" },
   { id: "laoganma", name: "老干妈", place: ["中超"], price: 3, effect: { sanity: 5, kitchen: 3 }, tag: "留子饭桌基础设施" },
-  { id: "instant_noodle", name: "康师傅/出前一丁", place: ["中超"], price: 5, effect: { sanity: 6, action: 4, cookingCount: 1 }, tag: "不健康，但很懂你" },
+  { id: "instant_noodle", name: "出前一丁", place: ["中超"], price: 5, effect: { sanity: 6, action: 4, cookingCount: 1 }, tag: "不健康，但很懂你" },
   { id: "milk_tea_powder", name: "奶茶粉", place: ["中超"], price: 5, effect: { sanity: 7, anxiety: 2 }, tag: "精神回血，糖分背锅" },
   { id: "ricecooker", name: "小绿锅", place: ["中超", "二手群"], price: 25, effect: { sanity: 4, kitchen: 8, weeklyCostMod: -6 }, tag: "文明之光，米饭自由" },
 
@@ -162,10 +163,10 @@ const shopItems = [
   { id: "noise_headphone", name: "降噪耳机", place: ["Amazon"], price: 90, effect: { study: 8, sanity: 5, face: 4 }, tag: "图书馆、室友、火警之后的自救" },
   { id: "monitor_new", name: "新显示器", place: ["Amazon"], price: 85, effect: { study: 10, action: 5, face: 3 }, tag: "不便宜，但不用和二手群卖家斗智斗勇" },
 
-  // Uniqlo：冬天装备
-  { id: "heattech", name: "Heattech", place: ["Uniqlo"], price: 20, effect: { sanity: 6, action: 3 }, tag: "英国冬天底层防线" },
-  { id: "uniqlo_puffer", name: "Uniqlo羽绒服", place: ["Uniqlo"], price: 80, effect: { sanity: 10, face: 8 }, tag: "全英留子统一皮肤" },
-  { id: "uniqlo_socks", name: "袜子三件套", place: ["Uniqlo"], price: 10, effect: { sanity: 3, action: 2 }, tag: "你不知道为什么总是缺袜子" },
+  // Primark：冬天装备
+  { id: "heattech", name: "Heattech", place: ["primark"], price: 20, effect: { sanity: 6, action: 3 }, tag: "🥶" },
+  { id: "primark_puffer", name: "primark羽绒服", place: ["primark"], price: 80, effect: { sanity: 10, face: 8 }, tag: "冷是真的冷，体面可以先放一放" },
+  { id: "primark_socks", name: "袜子三件套", place: ["primark"], price: 10, effect: { sanity: 3, action: 2 }, tag: "你不知道为什么总是缺袜子" },
 
   // M&S：网红零食和情绪价值
   { id: "ms_grapes", name: "M&S网红葡萄", place: ["M&S"], price: 6, effect: { sanity: 8, face: 5, shoppingCount: 1 }, tag: "小红书说好吃，你决定相信一次" },
@@ -181,7 +182,7 @@ const shopItems = [
   { id: "waitrose_dessert", name: "Waitrose甜品", place: ["Waitrose"], price: 5, effect: { sanity: 7, face: 5 }, tag: "你只是想买点开心" },
 ];
 
-const shops = ["跳过", "Tesco", "Boots", "中超", "二手群", "TK Maxx", "M&S", "Waitrose", "Amazon", "Uniqlo"];
+const shops = ["跳过", "Tesco", "Boots", "中超", "二手群", "TK Maxx", "M&S", "Waitrose", "Amazon", "Primark"];
 
 const mainEvents = [
   {
@@ -294,7 +295,7 @@ const mainEvents = [
   },
   {
     title: "老师照读PPT",
-    text: "你花了国际生学费，老师把slides念了一遍，然后说everything is on Blackboard。",
+    text: "你花了国际生学费，老师把slides念了一遍，然后说everything is on Canvas。",
     choices: [
       { text: "继续听，试图尊重学费", type: "study", effect: { study: 4, sanity: -6 } },
       { text: "回去看YouTube速成课", type: "study", effect: { study: 8, info: 4, sanity: 2 } },
@@ -602,10 +603,10 @@ const randomEvents = [
   },
   {
     title: "老师照读PPT",
-    text: "这节lecture的核心内容是：老师把slides上的字念了一遍，并在最后说everything is on Blackboard。",
+    text: "这节lecture的核心内容是：老师把slides上的字念了一遍，并在最后说everything is on Canvas。",
     rarity: "small",
     effect: { study: -3, sanity: -5, anxiety: 4 },
-    achievement: "Blackboard自学选手",
+    achievement: "Canvas自学选手",
   },
   {
     title: "Office Hour玄学",
@@ -741,6 +742,46 @@ const randomEvents = [
     text: "窗边出现了英国特色生态系统。你开始研究除霉喷雾。",
     rarity: "small",
     effect: { sanity: -6, action: -4, info: 5 },
+  },
+  {
+    title: "二手群回血成功",
+    text: "你把一个闲置小电器挂到二手群，居然没有被刀，也没有被鸽。",
+    rarity: "small",
+    effect: { cash: 35, sanity: 5, secondHandWins: 1 },
+    achievement: "二手群回血选手",
+  },
+  {
+    title: "Bank Switch Offer到账",
+    text: "你按攻略切了银行，几周后奖励到账。英国银行终于不是只会发验证邮件了。",
+    rarity: "medium",
+    effect: { cash: 120, sanity: 8, info: 5 },
+    achievement: "英区薅羊毛大师",
+  },
+  {
+    title: "退款奇迹",
+    text: "你本来已经放弃了，结果某个平台突然退款成功。钱不多，但像天降正义。",
+    rarity: "small",
+    effect: { cash: 30, sanity: 6 },
+  },
+  {
+    title: "朋友请饭",
+    text: "朋友说今天他请。你表面客气，内心已经恢复了半管血。",
+    rarity: "small",
+    effect: { cash: 20, sanity: 8, social: 4 },
+  },
+  {
+    title: "黄标区大胜利",
+    text: "你在超市黄标区精准出手，买到了今晚和明天的快乐。",
+    rarity: "small",
+    effect: { cash: 18, sanity: 5, info: 3 },
+    achievement: "黄标区猎人",
+  },
+  {
+    title: "学校小奖学金到账",
+    text: "一笔你几乎忘了申请过的小奖学金突然到账，你第一次觉得学校系统也能做人。",
+    rarity: "medium",
+    effect: { cash: 180, sanity: 10, anxiety: -5 },
+    achievement: "奖学金捡漏王",
   },
 ];
 
@@ -990,7 +1031,7 @@ function App() {
   const [state, setState] = useState(savedGame?.state || baseState);
   const [phase, setPhase] = useState(savedGame?.phase || "event");
   const [lastResult, setLastResult] = useState(savedGame?.lastResult || null);
-  const [selectedShop, setSelectedShop] = useState(savedGame?.selectedShop || "跳过");
+  const [selectedShop, setSelectedShop] = useState(savedGame?.selectedShop || "Tesco");
   const [titleClicks, setTitleClicks] = useState(savedGame?.titleClicks || 0);
   const [creditHint, setCreditHint] = useState(savedGame?.creditHint || "");
   const [lastContext, setLastContext] = useState(savedGame?.lastContext || "");
@@ -1055,7 +1096,7 @@ function App() {
   function handleChoice(choice) {
     let next = { ...state };
 
-    const weeklyCost = Math.max(20, 45 + (next.weeklyCostMod || 0));
+    const weeklyCost = Math.max(18, 32 + (next.weeklyCostMod || 0));
     next.cash = Math.max(0, next.cash - weeklyCost);
 
     next = applyEffect(next, choice.effect, character, choice.type);
@@ -1155,7 +1196,7 @@ function App() {
     next.week += 1;
     setState(next);
     setPhase("event");
-    setSelectedShop("跳过");
+    setSelectedShop("Tesco");
   }
   function handleCreditClick() {
     const nextClicks = titleClicks + 1;
@@ -1194,7 +1235,7 @@ function App() {
     setState(baseState);
     setPhase("event");
     setLastResult(null);
-    setSelectedShop("跳过");
+    setSelectedShop("Tesco");
     setTitleClicks(0);
     setCreditHint("");
     setLastContext("");
@@ -1204,6 +1245,7 @@ function App() {
   if (screen === "start") {
     return (
       <main className="page">
+        <Analytics />
         <section className="hero">
           <h1>英区留子随机事件模拟器</h1>
           <p>你只是想读个书，英国生活却开始随机出题。</p>
@@ -1235,6 +1277,7 @@ function App() {
   if (finished) {
     return (
       <main className="page">
+        <Analytics />
         <section className="ending-card">
           <div className="rank">结局 {ending.rank}</div>
           <h1>{ending.title}</h1>
@@ -1317,9 +1360,15 @@ function App() {
                 <button
                   key={s}
                   className={selectedShop === s ? "tab active" : "tab"}
-                  onClick={() => setSelectedShop(s)}
+                  onClick={() => {
+                    if (s === "跳过") {
+                      finishWeek();
+                    } else {
+                      setSelectedShop(s);
+                    }
+                  }}
                 >
-                  {s}
+                  {s === "跳过" ? "跳过补给" : s}
                 </button>
               ))}
             </div>
