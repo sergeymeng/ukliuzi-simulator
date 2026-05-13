@@ -164,9 +164,9 @@ const shopItems = [
   { id: "monitor_new", name: "新显示器", place: ["Amazon"], price: 85, effect: { study: 10, action: 5, face: 3 }, tag: "不便宜，但不用和二手群卖家斗智斗勇" },
 
   // Primark：冬天装备
-  { id: "heattech", name: "Heattech", place: ["primark"], price: 20, effect: { sanity: 6, action: 3 }, tag: "🥶" },
-  { id: "primark_puffer", name: "primark羽绒服", place: ["primark"], price: 80, effect: { sanity: 10, face: 8 }, tag: "冷是真的冷，体面可以先放一放" },
-  { id: "primark_socks", name: "袜子三件套", place: ["primark"], price: 10, effect: { sanity: 3, action: 2 }, tag: "你不知道为什么总是缺袜子" },
+  { id: "heattech", name: "Heattech", place: ["Primark"], price: 20, effect: { sanity: 6, action: 3 }, tag: "🥶" },
+  { id: "primark_puffer", name: "primark羽绒服", place: ["Primark"], price: 80, effect: { sanity: 10, face: 8 }, tag: "冷是真的冷，体面可以先放一放" },
+  { id: "primark_socks", name: "袜子三件套", place: ["Primark"], price: 10, effect: { sanity: 3, action: 2 }, tag: "你不知道为什么总是缺袜子" },
 
   // M&S：网红零食和情绪价值
   { id: "ms_grapes", name: "M&S网红葡萄", place: ["M&S"], price: 6, effect: { sanity: 8, face: 5, shoppingCount: 1 }, tag: "小红书说好吃，你决定相信一次" },
