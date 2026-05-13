@@ -187,7 +187,7 @@ const shops = ["跳过", "Tesco", "Boots", "中超", "二手群", "TK Maxx", "M&
 const mainEvents = [
   {
     title: "落地新手村",
-    text: "你拖着箱子落地英国，手机电量 12%，Google Maps显示还要转两趟车。",
+    text: "你拖着箱子落地英国，手机电量12%，Google Maps显示还要转两趟车。",
     choices: [
       { text: "先去宿舍放行李", type: "solo", effect: { action: -6, sanity: 6, info: 2 } },
       { text: "先买电话卡和生活用品", type: "info", effect: { cash: -35, action: -8, info: 8 } },
@@ -210,6 +210,28 @@ const mainEvents = [
       { text: "参加社交活动", type: "social", effect: { social: -12, face: 8, info: 5, cash: -25 } },
       { text: "躲在宿舍熟悉环境", type: "solo", effect: { sanity: 8, action: 3, social: -4 } },
       { text: "加满微信群/学联群/二手群", type: "info", effect: { info: 12, sanity: -4, anxiety: 4 } },
+    ],
+  },
+  {
+    title: "课搭子掉马现场",
+    text: "开学前你加的“课搭子”们终于活跃了。坏消息：他们不是来上课的。好消息：他们的业务范围很完整，论文代写留学申诉病假条一条龙。你突然意识到，自己的好友列表里潜伏着一支代写预备队。（ip：荷兰）",
+    choices: [
+      {
+        text: "拉黑举报，顺手提醒真同学",
+        type: "info",
+        effect: { info: 10, alertness: 10, sanity: 3, action: -4 },
+        achievement: "学术诚信守门员",
+      },
+      {
+        text: "问一句：你不是说你也上这门吗？",
+        type: "melon",
+        effect: { sanity: -6, action: -4, info: 5, melonPollution: 1 },
+      },
+      {
+        text: "沉默三秒，接受互联网物种多样性",
+        type: "solo",
+        effect: { sanity: -2, alertness: 6, info: 4 },
+      },
     ],
   },
   {
