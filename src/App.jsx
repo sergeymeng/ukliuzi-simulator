@@ -164,10 +164,14 @@ const shopItems = [
   { id: "monitor_new", name: "新显示器", place: ["Amazon"], price: 85, effect: { study: 10, action: 5, face: 3 }, tag: "不便宜，但不用和二手群卖家斗智斗勇" },
 
   // Primark：冬天装备
-  { id: "heattech", name: "Heattech", place: ["Primark"], price: 20, effect: { sanity: 6, action: 3 }, tag: "🥶" },
-  { id: "primark_puffer", name: "primark羽绒服", place: ["Primark"], price: 80, effect: { sanity: 10, face: 8 }, tag: "冷是真的冷，体面可以先放一放" },
-  { id: "primark_socks", name: "袜子三件套", place: ["Primark"], price: 10, effect: { sanity: 3, action: 2 }, tag: "你不知道为什么总是缺袜子" },
-
+  // Primark：便宜衣物和冬天自救
+  { id: "primark_socks", name: "Primark袜子一大包", place: ["Primark"], price: 6, effect: { sanity: 4, action: 2 }, tag: "你不知道为什么袜子总在消失" },
+  { id: "primark_hoodie", name: "Primark卫衣", place: ["Primark"], price: 14, effect: { sanity: 5, face: 2 }, tag: "便宜、能穿、洗完另说" },
+  { id: "primark_pajamas", name: "Primark睡衣", place: ["Primark"], price: 12, effect: { sanity: 7, face: -1 }, tag: "宿舍精神状态修复装备" },
+  { id: "primark_thermal", name: "Primark保暖内搭", place: ["Primark"], price: 10, effect: { sanity: 6, action: 3 }, tag: "不是Heattech，但也能救命" },
+  { id: "primark_slippers", name: "宿舍拖鞋", place: ["Primark"], price: 5, effect: { sanity: 4, alertness: 2 }, tag: "厨房地板到底干不干净，别细想" },
+  { id: "primark_tote", name: "Primark帆布袋", place: ["Primark"], price: 3, effect: { action: 2, face: 1 }, tag: "买菜、上课、装作有生活" },
+  
   // M&S：网红零食和情绪价值
   { id: "ms_grapes", name: "M&S网红葡萄", place: ["M&S"], price: 6, effect: { sanity: 8, face: 5, shoppingCount: 1 }, tag: "小红书说好吃，你决定相信一次" },
   { id: "ms_strawberry_tart", name: "草莓塔", place: ["M&S"], price: 5, effect: { sanity: 9, face: 6, shoppingCount: 1 }, tag: "甜品治不了DDL，但可以暂停痛苦" },
