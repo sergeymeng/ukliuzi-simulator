@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 
 const clamp = (value, min = 0, max = 100) => Math.max(min, Math.min(max, value));
@@ -69,7 +69,7 @@ const characters = [
     name: "社牛Freshers型",
     desc: "社交收益高，但钱包漏风。",
     stats: { cash: 720, study: 48, sanity: 68, action: 62, social: 68, info: 35, face: 48, anxiety: 38 },
-    item: "Freshers Wristband",
+    item: "新生周手环",
     passive: "社交类选择额外信息差 +3、体面值 +3，但余额 -£8。",
   },
   {
@@ -117,11 +117,11 @@ const characters = [
 const traits = [
   { name: "带了两箱行李", text: "开局多几个生活道具，但行动力 -5。", effect: { action: -5 }, items: ["转换插头", "保温杯"] },
   { name: "只带一个登机箱", text: "行动力 +8，但前三周购物欲更强。", effect: { action: 8, cash: -30 } },
-  { name: "汇率 9.4 入学", text: "余额 -£80，前途焦虑 +8。", effect: { cash: -80, anxiety: 8 } },
-  { name: "宿舍离学校 8 分钟", text: "行动力 +5，余额 -£40。", effect: { action: 5, cash: -40 } },
-  { name: "宿舍离学校 40 分钟", text: "余额 +£60，行动力 -8。", effect: { cash: 60, action: -8 } },
+  { name: "汇率9.8入学", text: "余额 -£80，前途焦虑 +8。", effect: { cash: -80, anxiety: 8 } },
+  { name: "宿舍离学校8分钟", text: "行动力 +5，余额 -£40。", effect: { action: 5, cash: -40 } },
+  { name: "宿舍离学校40分钟", text: "余额 +£60，行动力 -8。", effect: { cash: 60, action: -8 } },
   { name: "室友是厨房战神", text: "厨房熟练度 +8，但火警故事概率上升。", effect: { kitchen: 8, sanity: -2 } },
-  { name: "室友是安静 NPC", text: "精神状态 +5，社交电量 -3。", effect: { sanity: 5, social: -3 } },
+  { name: "室友是安静NPC", text: "精神状态 +5，社交电量 -3。", effect: { sanity: 5, social: -3 } },
   { name: "开局认识学长学姐", text: "信息差 +10，社交电量 +3。", effect: { info: 10, social: 3 } },
 ];
 
@@ -144,7 +144,7 @@ const shopItems = [
   { id: "laoganma", name: "老干妈", place: ["中超"], price: 3, effect: { sanity: 5, kitchen: 3 }, tag: "留子饭桌基础设施" },
   { id: "instant_noodle", name: "康师傅/出前一丁", place: ["中超"], price: 5, effect: { sanity: 6, action: 4, cookingCount: 1 }, tag: "不健康，但很懂你" },
   { id: "milk_tea_powder", name: "奶茶粉", place: ["中超"], price: 5, effect: { sanity: 7, anxiety: 2 }, tag: "精神回血，糖分背锅" },
-  { id: "ricecooker", name: "电饭煲", place: ["中超", "二手群"], price: 25, effect: { sanity: 4, kitchen: 8, weeklyCostMod: -6 }, tag: "文明之光，米饭自由" },
+  { id: "ricecooker", name: "小绿锅", place: ["中超", "二手群"], price: 25, effect: { sanity: 4, kitchen: 8, weeklyCostMod: -6 }, tag: "文明之光，米饭自由" },
 
   // 二手群：高风险高收益
   { id: "second_monitor", name: "二手显示器", place: ["二手群"], price: 20, effect: { study: 10, action: 5, secondHandWins: 1 }, tag: "宿舍工位升级，前提是卖家不鸽" },
@@ -186,7 +186,7 @@ const shops = ["跳过", "Tesco", "Boots", "中超", "二手群", "TK Maxx", "M&
 const mainEvents = [
   {
     title: "落地新手村",
-    text: "你拖着箱子落地英国，手机电量 12%，Google Maps 显示还要转两趟车。",
+    text: "你拖着箱子落地英国，手机电量 12%，Google Maps显示还要转两趟车。",
     choices: [
       { text: "先去宿舍放行李", type: "solo", effect: { action: -6, sanity: 6, info: 2 } },
       { text: "先买电话卡和生活用品", type: "info", effect: { cash: -35, action: -8, info: 8 } },
@@ -973,15 +973,55 @@ function getPersonaTags(state) {
   return tags.slice(0, 3);
 }
 
+const SAVE_KEY = "liuzi-simulator-save-v1";
 function App() {
-  const [screen, setScreen] = useState("start");
-  const [character, setCharacter] = useState(null);
-  const [trait, setTrait] = useState(null);
-  const [state, setState] = useState(baseState);
-  const [phase, setPhase] = useState("event");
-  const [lastResult, setLastResult] = useState(null);
-  const [selectedShop, setSelectedShop] = useState("跳过");
-  const [lastContext, setLastContext] = useState("");
+  const savedGame = (() => {
+    try {
+      const raw = localStorage.getItem(SAVE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  })();
+
+  const [screen, setScreen] = useState(savedGame?.screen || "start");
+  const [character, setCharacter] = useState(savedGame?.character || null);
+  const [trait, setTrait] = useState(savedGame?.trait || null);
+  const [state, setState] = useState(savedGame?.state || baseState);
+  const [phase, setPhase] = useState(savedGame?.phase || "event");
+  const [lastResult, setLastResult] = useState(savedGame?.lastResult || null);
+  const [selectedShop, setSelectedShop] = useState(savedGame?.selectedShop || "跳过");
+  const [titleClicks, setTitleClicks] = useState(savedGame?.titleClicks || 0);
+  const [creditHint, setCreditHint] = useState(savedGame?.creditHint || "");
+  const [lastContext, setLastContext] = useState(savedGame?.lastContext || "");
+
+  useEffect(() => {
+    const saveData = {
+      screen,
+      character,
+      trait,
+      state,
+      phase,
+      lastResult,
+      selectedShop,
+      titleClicks,
+      creditHint,
+      lastContext,
+    };
+
+    localStorage.setItem(SAVE_KEY, JSON.stringify(saveData));
+  }, [
+    screen,
+    character,
+    trait,
+    state,
+    phase,
+    lastResult,
+    selectedShop,
+    titleClicks,
+    creditHint,
+    lastContext,
+  ]);
 
   const finished = state.week > mainEvents.length;
   const currentEvent = finished ? null : mainEvents[state.week - 1];
@@ -1117,8 +1157,37 @@ function App() {
     setPhase("event");
     setSelectedShop("跳过");
   }
+  function handleCreditClick() {
+    const nextClicks = titleClicks + 1;
+    setTitleClicks(nextClicks);
+
+    if (nextClicks < 5) {
+      setCreditHint(`点到了什么🤔：${nextClicks}/5`);
+      return;
+    }
+
+    if (nextClicks === 5) {
+      setCreditHint("隐藏彩蛋触发：作者Sergey Meng出现了。精神状态+6，体面值+3");
+
+      let next = applyEffect(state, { sanity: 6, face: 3 });
+      next = addAchievement(next, "发现作者彩蛋");
+      setState(next);
+
+      setLastResult({
+        title: "隐藏彩蛋触发",
+        text: "你连续点击署名，召唤出了作者Sergey Meng。精神状态+6，体面值+3。",
+        changes: "精神状态 +6 · 体面值 +3",
+      });
+    }
+
+    if (nextClicks > 5) {
+      setCreditHint("别点了别点了，作者在final周做出来了这个，精神状态确实不太美好。");
+    }
+  }
 
   function reset() {
+    localStorage.removeItem(SAVE_KEY);
+
     setScreen("start");
     setCharacter(null);
     setTrait(null);
@@ -1126,8 +1195,11 @@ function App() {
     setPhase("event");
     setLastResult(null);
     setSelectedShop("跳过");
+    setTitleClicks(0);
+    setCreditHint("");
     setLastContext("");
   }
+
 
   if (screen === "start") {
     return (
@@ -1135,6 +1207,12 @@ function App() {
         <section className="hero">
           <h1>英区留子随机事件模拟器</h1>
           <p>你只是想读个书，英国生活却开始随机出题。</p>
+          <div className="credit-wrap">
+            <button className="credit credit-button" onClick={handleCreditClick}>
+              Made by Sergey Meng
+            </button>
+            {creditHint && <span className="credit-hint">{creditHint}</span>}
+          </div>
         </section>
 
         <section className="panel">
@@ -1186,7 +1264,9 @@ function App() {
               <p>没有特别成就，但能活下来已经很强。</p>
             )}
           </div>
-
+          <p className="easter-egg">
+            彩蛋：如果你在英区随机事件里活下来了，请给作者Sergey加一点精神状态。
+          </p>
           <button className="primary" onClick={reset}>再来一局</button>
         </section>
       </main>
@@ -1199,7 +1279,9 @@ function App() {
         <div className="topbar">
           <div>
             <div className="pill">第 {state.week} / {mainEvents.length} 周</div>
-            <h1>{currentEvent.title}</h1>
+            <h1 onClick={handleCreditClick} className="clickable-title">
+              {currentEvent.title}
+            </h1>
           </div>
           <button className="ghost" onClick={reset}>重开</button>
         </div>
@@ -1322,6 +1404,6 @@ function App() {
       </aside>
     </main>
   );
-}
 
+}
 export default App;
