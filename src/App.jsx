@@ -353,7 +353,7 @@ const mainEvents = [
   },
   {
     title: "厨房政治学",
-    text: "厨房水槽里出现了未知盘子。垃圾袋满了三天，群里没人承认。",
+    text: "厨房水槽里出现了未知盘子。垃圾袋满了三天，群里没人承认。没有人类了！😫",
     choices: [
       { text: "主动清理", type: "rest", effect: { action: -6, sanity: -5, social: 3 } },
       { text: "在群里礼貌提醒", type: "social", effect: { social: -6, sanity: -2, info: 3 } },
@@ -375,7 +375,7 @@ const mainEvents = [
     choices: [
       { text: "学校涨了，立刻转发喜报", type: "face", effect: { face: 10, sanity: 4, anxiety: -2 }, achievement: "QS精神股东" },
       { text: "学校跌了，开始说排名不重要", type: "rest", effect: { sanity: -3, anxiety: 5, info: 3 } },
-      { text: "查隔壁学校和美国top50排名", type: "melon", effect: { anxiety: 8, action: -4, info: 6, melonPollution: 1 } },
+      { text: "查隔壁学校排名", type: "melon", effect: { anxiety: 8, action: -4, info: 6, melonPollution: 1 } },
     ],
   },
   {
@@ -398,7 +398,7 @@ const mainEvents = [
   },
   {
     title: "课程群爆炸",
-    text: "有人问这个作业怎么写，有人说别问了自己看rubric，有人开始阴阳怪气。课程群变成了小型社会实验。",
+    text: "有人问这个作业怎么写，有人说别问了自己去问AI，有人开始阴阳怪气。课程群变成了小型社会实验。",
     choices: [
       { text: "潜水看戏", type: "melon", effect: { info: 4, melonPollution: 1, sanity: -2 } },
       { text: "发有用信息", type: "social", effect: { face: 5, social: -4, info: 3 } },
@@ -416,7 +416,7 @@ const mainEvents = [
   },
   {
     title: "赛博瓜田污染",
-    text: "群里开始流传爆料 PDF，评论区还有一群人复读恶臭黄谣黑话。",
+    text: "群里开始流传爆料PDF，评论区还有一群人复读恶臭黄谣黑话。",
     choices: [
       { text: "点开吃瓜PDF", type: "melon", effect: { info: 4, sanity: -6, action: -5, anxiety: 3, melonPollution: 1, pdfCount: 1 } },
       { text: "划走，不给垃圾内容流量", type: "solo", achievement: "赛博空气净化器", effect: { sanity: 5, action: 3, alertness: 4 } },
@@ -464,14 +464,14 @@ const mainEvents = [
 const randomEvents = [
   {
     title: "TK Maxx淘宝藏",
-    text: "你在混乱衣架里发现一件 Ralph Lauren，尺码居然能穿。",
+    text: "你在混乱衣架里发现一件Ralph Lauren，尺码居然能穿。",
     rarity: "medium",
     effect: { cash: -45, face: 15, sanity: 8, shoppingCount: 1 },
     achievement: "TK Maxx 淘金王",
   },
   {
     title: "二手群£15显示器大漏",
-    text: "卖家说今晚必须自取，地点离你 47 分钟公交。",
+    text: "卖家说今晚必须自取，地点离你47分钟公交。",
     rarity: "medium",
     effect: { cash: -15, action: -12, study: 8, sanity: -3, secondHandWins: 1 },
     achievement: "大漏圣体",
@@ -491,7 +491,7 @@ const randomEvents = [
   },
   {
     title: "手机飞升",
-    text: "你在伦敦低头看导航，一辆电动车丝滑路过。",
+    text: "你在伦敦低头看导航，一辆黑色摩托车丝滑路过。",
     rarity: "danger",
     risk: "phone",
   },
@@ -507,31 +507,31 @@ const randomEvents = [
     text: "引用很规范，心跳不规范。",
     rarity: "medium",
     effect: { sanity: -8, study: 2, anxiety: 6 },
-    achievement: "Turnitin 心跳挑战者",
+    achievement: "Turnitin享受者",
   },
   {
     title: "教授说不会考",
-    text: "全班松了一口气，但你感到一丝东方玄学危险。",
+    text: "全班松了一口气，你却隐隐感到不安。",
     rarity: "small",
     effect: { sanity: 6, anxiety: 4 },
   },
   {
     title: "油烟报警器Boss战",
-    text: "你只是煎了个蛋，整栋楼都知道你会做饭了。",
+    text: "你只是煎了个蛋，整栋楼都知道你下厨了。",
     rarity: "medium",
     effect: { sanity: -6, kitchen: 5 },
     achievement: "厨房火警传说",
   },
   {
     title: "How are you礼仪陷阱",
-    text: "你认真回答了 45 秒，对方只是路过。",
+    text: "你认真回答了45秒，对方只是路过。",
     rarity: "small",
     effect: { sanity: -3, info: 3 },
     achievement: "How Are You 认真答题者",
   },
   {
     title: "Sorry反射",
-    text: "别人撞了你，你先说 sorry。",
+    text: "别人撞了你，你先说sorry。",
     rarity: "small",
     effect: { face: 3, sorryCount: 1 },
   },
@@ -544,27 +544,27 @@ const randomEvents = [
   },
   {
     title: "Waitrose误入",
-    text: "你只是想买牛奶，却接受了一次英国中产价格教育。",
+    text: "你只想买牛奶......",
     rarity: "small",
     effect: { cash: -12, face: 4, anxiety: 3 },
     achievement: "Waitrose观光客",
   },
   {
-    title: "Ryanair 行李审判",
-    text: "你的背包看起来比规定大 0.5 厘米。",
+    title: "Ryanair行李审判",
+    text: "你的背包看起来比规定大0.5厘米。",
     rarity: "medium",
     effect: { action: -6, sanity: -4, face: -3 },
     achievement: "廉航特种兵",
   },
   {
-    title: "Unfortunately 开头",
+    title: "Unfortunately起手......",
     text: "邮件第一句已经剧透。",
     rarity: "medium",
     effect: { sanity: -7, anxiety: 6, rejectionCount: 1 },
   },
   {
     title: "Career Fair灵魂一问",
-    text: "你排队 20 分钟，最后问出：Do you sponsor visa?",
+    text: "你排队20分钟，最后问出：Do you sponsor visa?",
     rarity: "medium",
     effect: { info: 8, anxiety: 8, face: 4 },
   },
@@ -589,22 +589,21 @@ const randomEvents = [
     effect: { sanity: -8, anxiety: 8, info: 5 },
   },
   {
-    title: "瓜田 PDF 流出",
-    text: "群里突然流传出一份 38 页爆料 PDF，标题像论文，内容像厕所隔间录音整理。",
+    title: "瓜田PDF流出",
+    text: "群里突然流传出一份38页爆料PDF，标题像论文，内容像厕所隔间录音整理。",
     rarity: "medium",
     effect: { info: 5, sanity: -7, action: -5, melonPollution: 1, pdfCount: 1 },
-    achievement: "PDF 瓜田考古学家",
+    achievement: "PDF瓜田考古学家",
   },
   {
     title: "留学区造谣机",
-    text: "某主播又开始锐评女留学生，标题像掌握了世界真相，内容像从incel群聊里腌出来的。",
+    text: "某主播又开始锐评女留学生，标题像掌握了世界真相，评论区无数incel疯狂共振。",
     rarity: "medium",
     effect: { sanity: -7, action: -4, anxiety: 4, melonPollution: 1, rumorCount: 1 },
-    achievement: "瓜田观察员",
   },
   {
     title: "评论区复读机",
-    text: "你刷到一个女留子的正常生活视频，评论区却混进一群人复读下流黑话。",
+    text: "你刷到一个女留子的正常生活视频，评论区却混进一群牢A信徒复读下流黑话。",
     rarity: "medium",
     effect: { sanity: -6, action: -3, alertness: 5, melonPollution: 1 },
     achievement: "不要和粪坑辩论",
@@ -652,9 +651,10 @@ const randomEvents = [
   },
   {
     title: "QS排名下跌",
-    text: "学校QS排名跌了。你嘴上说排名不重要，手已经开始查隔壁学校。",
+    text: "学校QS排名跌了。你嘴上说排名不重要，结果手已经开始搜索各路排名。护校宝系统自动上线。",
     rarity: "small",
     effect: { face: -5, anxiety: 6, info: 3 },
+    achievement: "护校宝",
   },
   {
     title: "村驴老师做饭救命",
@@ -665,7 +665,7 @@ const randomEvents = [
   },
   {
     title: "外卖平台服务费刺客",
-    text: "菜£11.99，结账£19.47。你开始理解资本主义的层层封装。",
+    text: "菜£11.89，结账£19.64。你开始理解资本主义的层层封装。",
     rarity: "small",
     effect: { cash: -20, sanity: 6, anxiety: 3 },
   },
@@ -684,7 +684,7 @@ const randomEvents = [
   },
   {
     title: "宿舍暖气玄学",
-    text: "暖气不是太冷就是太热，中间态不存在。你开始怀疑它是不是英国哲学的一部分。",
+    text: "暖气不是太冷就是太热，中间态不存在。你开始怀疑它是不是英国不得不品的一部分。",
     rarity: "small",
     effect: { sanity: -4, action: -2 },
   },
@@ -716,8 +716,8 @@ const randomEvents = [
     effect: { anxiety: 8, sanity: -5, face: -2 },
   },
   {
-    title: "Seminar沉默局",
-    text: "tutor问any thoughts，整个教室进入静音模式。你听见了英国教育体系的回声。",
+    title: "Tutorial沉默局",
+    text: "TA问any thoughts，整个教室进入静音模式。",
     rarity: "small",
     effect: { study: 2, social: -4, sanity: -3 },
   },
@@ -755,7 +755,7 @@ const randomEvents = [
   },
   {
     title: "英国水垢震撼",
-    text: "水壶底部出现白色遗迹。你第一次理解英国水质也能参与生活叙事。",
+    text: "水壶底部出现白色遗迹。你第一次理解英国水质。",
     rarity: "small",
     effect: { info: 4, sanity: -2 },
   },
@@ -767,7 +767,7 @@ const randomEvents = [
   },
   {
     title: "二手群回血成功",
-    text: "你把一个闲置小电器挂到二手群，居然没有被刀，也没有被鸽。",
+    text: "你把一个闲置小电器挂到二手群，居然没有被刀，也没有被鸽。还有这种好事！",
     rarity: "small",
     effect: { cash: 35, sanity: 5, secondHandWins: 1 },
     achievement: "二手群回血选手",
@@ -804,6 +804,36 @@ const randomEvents = [
     rarity: "medium",
     effect: { cash: 180, sanity: 10, anxiety: -5 },
     achievement: "奖学金捡漏王",
+  },
+  {
+    title: "Council Tax惊魂",
+    text: "你收到一封Council Tax邮件。虽然学生大概率可以豁免，但邮件标题已经足够让你心跳失常。",
+    rarity: "small",
+    effect: { info: 6, anxiety: 5, action: -3 },
+  },
+  {
+    title: "Council Tax学生豁免",
+    text: "你终于查明白学生可以申请Council Tax exemption。真是虚惊一场😨",
+    rarity: "small",
+    effect: { info: 8, anxiety: -5, sanity: 3 },
+  },
+  {
+    title: "小红书标题党",
+    text: "你点开一篇“英国留学后我才知道……”，正文三句废话，配图九张自拍。",
+    rarity: "small",
+    effect: { info: -2, action: -4, sanity: -3, melonPollution: 1 },
+  },
+  {
+    title: "我朋友在UCL说",
+    text: "留学区万能信源出现了：我朋友在UCL说、我学姐说、我认识一个人说。（ip：中国大陆）",
+    rarity: "small",
+    effect: { info: 4, alertness: 6, sanity: -3, melonPollution: 1 },
+  },
+  {
+    title: "留学区听说学",
+    text: "有人开始分享内部消息，来源是朋友的朋友的学姐的同学，唯独不是他自己。你无力，只是苦笑",
+    rarity: "small",
+    effect: { info: 5, alertness: 5, sanity: -2, melonPollution: 1 },
   },
 ];
 
@@ -995,39 +1025,151 @@ function getShopItems(place) {
   return list.slice(0, 6);
 }
 function getEnding(state) {
-  if (state.cash <= 20) return { title: "余额保卫战失败", rank: "C", text: "你终于理解了为什么 Meal Deal 是英区留子的基础设施。" };
-  if (state.sanity < 25) return { title: "稳定地不稳定", rank: "C", text: "你没有崩溃，你只是以一种很稳定的方式不稳定着。" };
-  if (state.study < 45) return { title: "补考边缘人", rank: "C", text: "你和 pass 之间，只隔着一次玄学 marking。" };
-  if (state.anxiety >= 90) return { title: "前途焦虑完全体", rank: "C", text: "你还没毕业，但已经同时焦虑了三种人生路线。" };
-  if (state.secondHandScams > 0) return { title: "诈骗案例本人", rank: "C", text: "你用一笔钱，买到了英区生活第一课。" };
-  if (state.melonPollution >= 5 && state.sanity <= 45) return { title: "赛博瓜田受害者", rank: "B", text: "你本来只是想看看留学生活，结果被爆料 PDF、造谣主播和评论区复读机联合上了一课：互联网不是信息高速路，是情绪化粪池。" };
-  if (state.study >= 80 && state.sanity >= 40) return { title: "一等学位预备役", rank: "S", text: "你真的学了，而且还活着。" };
-  if (state.study >= 70 && state.action >= 55 && state.anxiety <= 65) return { title: "英区时间管理大师", rank: "A", text: "你居然没有把所有事情拖到最后一晚，这在留子界已经算超能力。" };
-  if (state.achievements.includes("比斯特经济学家") && (state.cash <= 220 || state.face >= 70)) return { title: "比斯特经济学家", rank: "B", text: "你花 £500 证明自己省了 £1200。" };
-  if (state.secondHandWins >= 2) return { title: "英区垃圾佬", rank: "A", text: "你的宿舍看起来像样板间，来源全是“毕业急出，今晚自取”。" };
-  if (state.face >= 80 && state.sanity <= 50) return { title: "朋友圈留学样板间", rank: "B", text: "别人以为你在欧洲岁月静好，其实你在厨房吃第四天咖喱。" };
-  if (state.rejectionCount >= 3) return { title: "拒信收藏家", rank: "B", text: "Unfortunately 已经成为你的英语启蒙读物。" };
-  if (state.face >= 75 && state.anxiety >= 70) return { title: "LinkedIn 体面大师", rank: "B", text: "你的 profile 很亮，但 inbox 很安静。" };
-  if (state.mealDealCount >= 3 && state.cash <= 180) return { title: "Meal Deal 资本主义囚徒", rank: "B", text: "你被 £3.90 的快乐长期收编。" };
-  if (state.melonPollution <= 1 && state.sanity >= 60 && state.alertness >= 35) return { title: "互联网免疫者", rank: "A", text: "你练成了稀有技能：看见赛博垃圾，不捡，不闻，不转发。" };
-  return { title: "普通但真实的留子", rank: "B", text: "你没有成为传说，但你撑过来了。这已经很厉害。" };
-}
+  // 严重翻车：只保留少数C结局
+  if (state.secondHandScams > 0) {
+    return {
+      title: "诈骗案例本人",
+      rank: "C",
+      text: "你用一笔钱，买到了英区生活第一课。没事，能长记性也算一种信息差。",
+    };
+  }
 
+  if (state.cash <= 20 && state.anxiety >= 70) {
+    return {
+      title: "余额保卫战失败",
+      rank: "C",
+      text: "你终于理解了为什么Meal Deal是英区留子的基础设施。下局记得先研究黄标区和二手群回血。",
+    };
+  }
+
+  if (state.sanity < 20) {
+    return {
+      title: "稳定地不稳定",
+      rank: "B",
+      text: "你没有崩溃，你只是以一种很稳定的方式不稳定着。但能撑到这里，已经很英区了。",
+    };
+  }
+
+  if (state.study < 38) {
+    return {
+      title: "补考边缘人",
+      rank: "B",
+      text: "你和pass之间，只隔着一次玄学marking。愿你补录播有重点，补作业有思路，补考全都刚好会。",
+    };
+  }
+
+  if (state.anxiety >= 95) {
+    return {
+      title: "前途焦虑完全体",
+      rank: "B",
+      text: "你还没毕业，但已经同时焦虑了三种人生路线。先别急，人生不是LinkedIn动态流。",
+    };
+  }
+
+  // 优先给学业好结局：吉祥话优先
+  if (state.study >= 75 && state.sanity >= 35) {
+    return {
+      title: "一等学位预备役",
+      rank: "S",
+      text: "献给所有英区留子，不要把梦想埋没！",
+    };
+  }
+
+  if (state.study >= 70 && state.action >= 50 && state.anxiety <= 70) {
+    return {
+      title: "英区时间管理大师",
+      rank: "S",
+      text: "你居然没有把所有事情拖到最后一晚，这在留子界已经算超能力。愿你的日历永远有余量。",
+    };
+  }
+
+  if (state.melonPollution <= 2 && state.sanity >= 60 && state.alertness >= 35) {
+    return {
+      title: "互联网免疫者",
+      rank: "A",
+      text: "你练成了稀有技能：看见赛博垃圾，不捡，不闻，不转发。这个精神状态值得奖励。",
+    };
+  }
+
+  // 特色画像：尽量给A，增强分享欲
+  if (state.secondHandWins >= 2) {
+    return {
+      title: "英区垃圾佬",
+      rank: "A",
+      text: "你的宿舍看起来像样板间，来源全是“毕业急出，今晚自取”。省钱也是一种英区超能力。",
+    };
+  }
+
+  if (state.achievements.includes("比斯特经济学家") && (state.cash <= 220 || state.face >= 70)) {
+    return {
+      title: "比斯特经济学家",
+      rank: "A",
+      text: "你花£500证明自己省了£1200。数学可能不严谨，但朋友圈很体面。",
+    };
+  }
+
+  if (state.rejectionCount >= 3) {
+    return {
+      title: "拒信收藏家",
+      rank: "A",
+      text: "Unfortunately已经成为你的英语启蒙读物。但每一封拒信，都说明你真的有在往外投。",
+    };
+  }
+
+  if (state.face >= 75 && state.anxiety >= 70) {
+    return {
+      title: "LinkedIn体面大师",
+      rank: "A",
+      text: "你的profile很亮，inbox暂时很安静。但体面也是战斗力，继续炼金。",
+    };
+  }
+
+  if (state.face >= 80 && state.sanity <= 50) {
+    return {
+      title: "朋友圈留学样板间",
+      rank: "A",
+      text: "别人以为你在欧洲岁月静好，其实你在厨房吃第四天咖喱。能把日子过成九宫格，也是一种本事。",
+    };
+  }
+
+  if (state.mealDealCount >= 3 && state.cash <= 180) {
+    return {
+      title: "Meal Deal资本主义囚徒",
+      rank: "B",
+      text: "你被£3.90的快乐长期收编。虽然不豪华，但很稳定，很英区，很真实。",
+    };
+  }
+
+  if (state.melonPollution >= 5 && state.sanity <= 45) {
+    return {
+      title: "赛博瓜田研究员",
+      rank: "B",
+      text: "你本来只是想看看留学生活，结果被爆料PDF、造谣主播和评论区复读机联合上了一课：互联网不是信息高速路，是情绪化粪池。",
+    };
+  }
+
+  // 普通结局别给太低
+  return {
+    title: "普通但真实的留子",
+    rank: "A",
+    text: "你没有成为传说，但你撑过来了。能在英区随机事件里正常活到结尾，已经很厉害。",
+  };
+}
 function getPersonaTags(state) {
   const candidates = [
     [state.study >= 75, "学术求生者"],
-    [state.mealDealCount >= 2, "Meal Deal 研究员"],
+    [state.mealDealCount >= 2, "Meal Deal研究员"],
     [state.cookingCount >= 2 || state.items.includes("速冻饺子"), "冷冻饺子守护者"],
     [state.secondHandWins >= 1, "二手群大漏圣体"],
     [state.secondHandGhosted >= 1, "鸽子饲养员"],
     [state.face >= 70, "朋友圈样板间"],
-    [state.anxiety >= 70, "LinkedIn 中毒患者"],
-    [state.royalMailRage >= 1, "Royal Mail 量子态居民"],
-    [state.melonPollution >= 2, "赛博瓜田受害者"],
+    [state.anxiety >= 70, "LinkedIn中毒患者"],
+    [state.royalMailRage >= 1, "Royal Mail受害者"],
+    [state.melonPollution >= 2, "赛博瓜田研究员"],
     [state.alertness >= 50, "英区警觉性进化者"],
     [state.cash <= 150, "余额保卫战选手"],
     [state.shoppingCount >= 2, "消费主义幸存者"],
-    [state.sorryCount >= 2, "Sorry 反射完全体"],
+    [state.sorryCount >= 2, "Sorry反射完全体"],
     [state.info >= 75 && state.action <= 40, "攻略收藏型人格"],
   ];
 
@@ -1173,6 +1315,94 @@ function App() {
 
   function finishWeek() {
     let next = { ...state };
+
+    if (next.action <= 0) {
+      next = applyEffect(next, {
+        study: -8,
+        sanity: -6,
+        anxiety: 8,
+        action: 12,
+      });
+
+      next.log = [
+        {
+          week: state.week,
+          title: "行动力归零",
+          action: "瘫痪周触发",
+          result: "学业 -8 · 精神状态 -6 · 前途焦虑 +8 · 行动力 +12",
+        },
+        ...next.log,
+      ].slice(0, 8);
+
+      setLastResult({
+        title: "行动力归零",
+        text: "你躺在床上刷手机，脑子里循环播放“我马上起来”。最后你确实恢复了一点行动力，但本周已经被生活偷走了。",
+        changes: "学业 -8 · 精神状态 -6 · 前途焦虑 +8 · 行动力 +12",
+      });
+
+      next.week += 1;
+      setState(next);
+      setPhase("event");
+      setSelectedShop("Tesco");
+      return;
+    }
+
+    if (next.action < 20) {
+      next = applyEffect(next, {
+        study: -3,
+        sanity: -3,
+        anxiety: 4,
+      });
+
+      next.log = [
+        {
+          week: state.week,
+          title: "行动力不足",
+          action: "低行动力惩罚",
+          result: "学业 -3 · 精神状态 -3 · 前途焦虑 +4",
+        },
+        ...next.log,
+      ].slice(0, 8);
+    }
+    if (next.sanity <= 0) {
+      next = applyEffect(next, { sanity: 15, action: -3, anxiety: 3 });
+
+      next.log = [
+        {
+          week: state.week,
+          title: "精神状态触底",
+          action: "强制回血",
+          result: "精神状态 +15 · 行动力 -3 · 前途焦虑 +3",
+        },
+        ...next.log,
+      ].slice(0, 8);
+
+      setLastResult({
+        title: "精神状态触底",
+        text: "你决定今天不和英国生活硬刚。躺平不是失败，是系统维护。",
+        changes: "精神状态 +15 · 行动力 -3 · 前途焦虑 +3",
+      });
+    }
+
+    if (next.anxiety >= 100) {
+      next = applyEffect(next, { anxiety: -15, sanity: 5, action: -3 });
+
+      next.log = [
+        {
+          week: state.week,
+          title: "前途焦虑爆表",
+          action: "短暂宕机",
+          result: "前途焦虑 -15 · 精神状态 +5 · 行动力 -3",
+        },
+        ...next.log,
+      ].slice(0, 8);
+
+      setLastResult({
+        title: "前途焦虑爆表",
+        text: "你焦虑到一定程度后，大脑反而进入了保护模式：算了，先吃饭。",
+        changes: "前途焦虑 -15 · 精神状态 +5 · 行动力 -3",
+      });
+    }
     const event = chooseRandomEvent(next, lastContext);
 
     if (event) {
@@ -1238,13 +1468,13 @@ function App() {
 
       setLastResult({
         title: "隐藏彩蛋触发",
-        text: "你连续点击署名，召唤出了作者Sergey Meng。精神状态+6，体面值+3。",
+        text: "你连续点击署名，召唤出了作者Sergey。精神状态+6，体面值+3。",
         changes: "精神状态 +6 · 体面值 +3",
       });
     }
 
     if (nextClicks > 5) {
-      setCreditHint("别点了别点了，作者在final周做出来了这个，精神状态确实不太美好。");
+      setCreditHint("作者在final周做出来了这些，离人类的范畴已经很远了。");
     }
   }
 
